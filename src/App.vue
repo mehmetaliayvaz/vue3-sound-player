@@ -7,6 +7,11 @@
     >
       <h2>{{ soundItem.title }}</h2>
     </div>
+    <div>
+      <button>Prev</button>
+      <button>Play</button>
+      <button>Next</button>
+    </div>
   </div>
 </template>
 
@@ -15,19 +20,20 @@ import { ref } from "vue";
 
 const sounds = ref([
   {
-    title: "Prof. Dr. Mehmet - Epilepsi tedavisinde yapılan hatalar",
-    media:
-      "https://sf-norozone.s3.eu-west-2.amazonaws.com/854/Prof.-Dr.-Bar%C4%B1%C5%9F-Baklan-Epilepsinin-tan%C4%B1m%C4%B1-nedir--Hastaya-nas%C4%B1l-a%C3%A7%C4%B1klan%C4%B1r-.mp3",
+    title: "Sound 1",
+    media: "/sound/sound-1.mp3",
   },
   {
-    title: "Prof. Dr. Ahmet Baklan - Epilepsi tanısı koymak kolay mıdır?",
-    media:
-      "https://sf-norozone.s3.eu-west-2.amazonaws.com/853/Prof.-Dr.-Bar%C4%B1%C5%9F-Baklan-Epilepsi-tedavisinde-yap%C4%B1lan-hatalar.mp3",
+    title: "Sound 2",
+    media: "/sound/sound-2.mp3",
   },
   {
-    title: "Prof. Dr. Mustafa Kasım - Epilepsi tedavisinde yapılan hatalar",
-    media:
-      "https://sf-norozone.s3.eu-west-2.amazonaws.com/852/Prof.-Dr.-Bar%C4%B1%C5%9F-Baklan-Epilepsi-tan%C4%B1s%C4%B1-koymak-kolay-m%C4%B1d%C4%B1r-.wav",
+    title: "Sound 3",
+    media: "/sound/sound-3.mp3",
+  },
+  {
+    title: "Sound 4",
+    media: "/sound/sound-4.mp3",
   },
 ]);
 </script>
