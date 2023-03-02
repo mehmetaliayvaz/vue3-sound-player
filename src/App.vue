@@ -1,5 +1,5 @@
 <template>
-  <div class="soundPlayer">
+  <div id="player" class="soundPlayer">
     <div
       v-for="(soundItem, soundIndex) in sounds"
       :key="soundIndex"
@@ -16,7 +16,12 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { draggable } from "./helpers/draggable";
+import { ref, onMounted } from "vue";
+
+onMounted(() => {
+  draggable("player");
+});
 
 const sounds = ref([
   {
@@ -61,5 +66,14 @@ const sounds = ref([
 .soundPlayer-item {
   padding: 1rem;
   border-bottom: 1px solid #fff;
+}
+
+button {
+  padding: 1rem 2rem;
+  background: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 1rem;
 }
 </style>
