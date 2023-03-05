@@ -6,7 +6,7 @@
 import SoundPlayer from "./components/SoundPlayer.vue";
 const sounds = [
   {
-    title: "Sound 1",
+    title: "Sound 1 sound 1 sound 1",
     file_url: "/sound/sound-1.mp3",
   },
   {
@@ -24,6 +24,6 @@ const sounds = [
 ];
 </script>
 
-<style scoped>
+<style>
 @import "./css/main.css";
 </style>
