@@ -19,6 +19,17 @@
   transform: translate(-50%, -50%);
 }
 
+.soundPlayer-soundList {
+  position: absolute;
+  background: #282828;
+  color: #fff;
+  border-radius: 0.5rem;
+  right: 0;
+  bottom: 60px;
+  display: flex;
+  flex-direction: column;
+}
+
 .soundPlayer-content {
   display: flex;
   align-items: center;

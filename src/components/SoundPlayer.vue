@@ -1,14 +1,15 @@
 <template>
   <div id="player" class="soundPlayer">
-    <template v-if="false">
-      <div
+    <div v-if="showSoundList" class="soundPlayer-soundList">
+      <button
         v-for="(soundItem, soundIndex) in sounds"
         :key="soundIndex"
         class="soundPlayer-item"
+        @click="play(soundItem)"
       >
-        <h2>{{ soundItem.title }}</h2>
-      </div>
-    </template>
+        <h3>{{ soundItem.title }}</h3>
+      </button>
+    </div>
     <div class="soundPlayer-content">
       <h2 class="soundPlayer-title">{{ current.title }}</h2>
       <input
@@ -55,6 +56,20 @@
         <button @click="nextSound()" class="soundPlayer-actions-btn">
           <next-icon />
         </button>
+        <button
+          v-if="showSoundList"
+          class="soundPlayer-actions-btn"
+          @click="showSoundList = false"
+        >
+          <close-icon />
+        </button>
+        <button
+          v-else
+          class="soundPlayer-actions-btn"
+          @click="showSoundList = true"
+        >
+          <list-icon />
+        </button>
       </div>
     </div>
   </div>
@@ -67,6 +82,8 @@ import PauseIcon from "./icons/PauseIcon.vue";
 import PrevIcon from "./icons/PrevIcon.vue";
 import NextIcon from "./icons/NextIcon.vue";
 import VolumeIcon from "./icons/VolumeIcon.vue";
+import ListIcon from "./icons/ListIcon.vue";
+import CloseIcon from "./icons/CloseIcon.vue";
 // import { draggable } from "./helpers/draggable";
 
 onMounted(() => {
@@ -80,6 +97,7 @@ const props = defineProps({
   },
 });
 
+const showSoundList = ref(false);
 const index = ref(0);
 const current = ref(props.sounds ? props.sounds[index.value] : {});
 const isPlaying = ref(false);
@@ -122,7 +140,7 @@ const play = (song) => {
     current.value = song;
     player.src = current.value.file_url;
   }
-  timer.value = setInterval(range_slider, 500);
+  timer.value = setInterval(range_slider, 1000);
   player.play();
   player.muted = false;
   isPlaying.value = true;
