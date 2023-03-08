@@ -1,12 +1,29 @@
 <template>
-  <div id="player" class="soundPlayer">
+  <div id="player" class="soundPlayer" :class="darkMode ? 'darkMode' : ''">
     <div v-if="showSoundList" class="soundPlayer-soundList">
       <button
         v-for="(soundItem, soundIndex) in sounds"
         :key="soundIndex"
-        class="soundPlayer-item"
-        @click="play(soundItem)"
+        class="soundPlayer-soundList-item"
+        @click="
+          current.id !== soundItem.id
+            ? play(soundItem)
+            : isPlaying
+            ? pause()
+            : play()
+        "
       >
+        <!-- üst kısım yapılacak -->
+        <pause-circle-icon
+          v-if="current.id === soundItem.id && isPlaying"
+          :size="16"
+          class="soundPlayer-soundList-item-icon"
+        />
+        <play-circle-icon
+          v-else
+          :size="16"
+          class="soundPlayer-soundList-item-icon"
+        />
         <h3>{{ soundItem.title }}</h3>
       </button>
     </div>
@@ -84,6 +101,8 @@ import NextIcon from "./icons/NextIcon.vue";
 import VolumeIcon from "./icons/VolumeIcon.vue";
 import ListIcon from "./icons/ListIcon.vue";
 import CloseIcon from "./icons/CloseIcon.vue";
+import PlayCircleIcon from "./icons/PlayCircleIcon.vue";
+import PauseCircleIcon from "./icons/PauseCircleIcon.vue";
 // import { draggable } from "./helpers/draggable";
 
 onMounted(() => {
@@ -94,6 +113,11 @@ const props = defineProps({
   sounds: {
     type: Array,
     required: true,
+  },
+  darkMode: {
+    type: Boolean,
+    required: false,
+    default: false,
   },
 });
 
