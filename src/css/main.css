@@ -1,5 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap");
 
+:root {
+  --soundPlayer-primary-color: #1abc9c;
+  --soundPlayer-secondary-color: #22272c;
+  --soundPlayer-tertiary-color: #4d6680;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -12,44 +18,104 @@
   width: 50%;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
-  background: #282828;
-  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
+  background: #fff;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
 }
 
+.darkMode.soundPlayer {
+  background: var(--soundPlayer-secondary-color);
+  color: #fff;
+}
+
 .soundPlayer-soundList {
   position: absolute;
-  background: #282828;
-  color: #fff;
+  background: #fff;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  color: var(--soundPlayer-secondary-color);
+  width: 250px;
   border-radius: 0.5rem;
   right: 0;
-  bottom: 60px;
+  bottom: 55px;
   display: flex;
   flex-direction: column;
+}
+
+.darkMode .soundPlayer-soundList {
+  background: var(--soundPlayer-secondary-color);
+  color: #fff;
+}
+
+.soundPlayer-soundList-item {
+  border-radius: 0;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.soundPlayer-soundList-item:nth-child(n + 2) {
+  border-top: 1px solid var(--soundPlayer-secondary-color);
+}
+
+.darkMode .soundPlayer-soundList-item:nth-child(n + 2) {
+  border-top: 1px solid #fff;
+}
+
+.soundPlayer-soundList-item h3 {
+  font-size: 0.75rem;
+  text-align: left;
+  font-weight: 400;
+  color: var(--soundPlayer-secondary-color);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.darkMode .soundPlayer-soundList-item h3 {
+  color: #fff;
+}
+
+.soundPlayer-soundList-item-icon {
+  margin-right: 0.5rem;
+  fill: var(--soundPlayer-secondary-color);
+  min-width: 16px;
+  min-height: 16px;
+}
+
+.darkMode .soundPlayer-soundList-item-icon {
+  fill: #fff;
 }
 
 .soundPlayer-content {
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 .soundPlayer-title {
   white-space: nowrap;
   margin-right: 1rem;
   font-size: 1rem;
-  color: #fff;
-  width: 300px;
+  color: var(--soundPlayer-secondary-color);
+  width: 500px;
   font-weight: 500;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
+.darkMode .soundPlayer-title {
+  color: #fff;
+}
+
 .soundPlayer-slider {
   width: 100%;
-  background-color: #e07aaf;
-  border-radius: 5px;
+  height: 2px;
+  -webkit-appearance: none;
+  background-color: lightgray;
+  cursor: pointer;
+  border-radius: 1px;
   margin-right: 1rem;
 }
 
@@ -64,26 +130,41 @@
   align-items: center;
 }
 
+.soundPlayer button {
+  background: transparent;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0 0.5rem;
+}
+
+.soundPlayer-soundList button {
+  border-radius: 0;
+}
+
 .soundPlayer-actions-btn {
   display: flex;
   justify-content: center;
   align-items: center;
   transition: 0.2s;
+  color: var(--soundPlayer-secondary-color);
+}
+
+.darkMode .soundPlayer-actions-btn {
   color: #fff;
 }
 
 .soundPlayer-actions-btn svg {
+  fill: var(--soundPlayer-secondary-color);
+}
+
+.darkMode .soundPlayer-actions-btn svg {
   fill: #fff;
 }
 
 .soundPlayer-actions-btn:hover {
-  background: #e07aaf;
-  color: #fff;
-}
-
-.soundPlayer-item {
-  padding: 1rem;
-  border-bottom: 1px solid #fff;
+  background: var(--soundPlayer-primary-color);
 }
 
 .soundPlayer-volume {
@@ -123,11 +204,25 @@
   cursor: pointer;
 }
 
-button {
-  background: transparent;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 5px;
+.soundPlayer-slider::-webkit-slider-thumb,
+.soundPlayer-volume-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  background: var(--soundPlayer-tertiary-color);
   cursor: pointer;
-  margin: 0.5rem;
+  transition: background 0.15s ease-in-out;
+}
+
+.soundPlayer-slider::-webkit-slider-thumb:hover,
+.soundPlayer-volume-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+  background: var(--soundPlayer-primary-color);
+}
+
+.soundPlayer-slider:active::-webkit-slider-thumb,
+.soundPlayer-volume-slider:active::-webkit-slider-thumb {
+  transform: scale(1.1);
+  background: var(--soundPlayer-primary-color);
 }
