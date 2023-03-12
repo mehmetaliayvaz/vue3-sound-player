@@ -1,9 +1,12 @@
 <template>
-  <sound-player :sounds="sounds" />
+  <sound-player :sounds="sounds" @active-sound="activeSound = $event" />
+  <p><b>Active Sound:</b> {{ activeSound?.title }}</p>
 </template>
 
 <script setup>
+import { ref } from "vue";
 import SoundPlayer from "./components/SoundPlayer.vue";
+const activeSound = ref();
 const sounds = [
   {
     id: 1,

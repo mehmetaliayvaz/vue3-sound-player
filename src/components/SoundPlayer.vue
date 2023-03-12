@@ -98,7 +98,7 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted, defineProps } from "vue";
+import { ref, watch, onMounted, defineProps, defineEmits } from "vue";
 import PlayIcon from "./icons/PlayIcon.vue";
 import PauseIcon from "./icons/PauseIcon.vue";
 import PrevIcon from "./icons/PrevIcon.vue";
@@ -132,6 +132,8 @@ const props = defineProps({
   },
 });
 
+const emits = defineEmits(["activeSound"]);
+
 const showSoundList = ref(false);
 const index = ref(0);
 const current = ref(props.sounds ? props.sounds[index.value] : {});
@@ -152,6 +154,14 @@ watch(
       current.value = props.sounds[index.value];
       player.src = current.value.file_url;
     }
+  }
+);
+
+emits("activeSound", current.value);
+watch(
+  () => current.value,
+  () => {
+    emits("activeSound", current.value);
   }
 );
 
