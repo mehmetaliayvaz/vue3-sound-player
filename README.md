@@ -1,24 +1,50 @@
-# vue3-sound-player
+# Vue3 Sound Player
 
-## Project setup
-```
-npm install
-```
+You can add an audio - sound player to your website with the Vue3 Sound Player library.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+All you have to do is pass the sound list to the player with the props.
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## Example
 
-### Lints and fixes files
-```
-npm run lint
+### Template Code
+
+```html
+<template>
+  <sound-player :sounds="sounds" />
+</template>
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Setup Code
+
+```javascript
+const sounds = [
+  {
+    id: 1,
+    title: "Sound 1",
+    file_url: "/sound/sound-1.mp3",
+  },
+  {
+    id: 2,
+    title: "Sound 2",
+    file_url: "/sound/sound-2.mp3",
+  },
+  {
+    id: 3,
+    title: "Sound 3",
+    file_url: "/sound/sound-3.mp3",
+  },
+  {
+    id: 4,
+    title: "Sound 4",
+    file_url: "/sound/sound-4.mp3",
+  },
+];
+```
+
+## Props
+
+| Props Title | Default Value | Required |
+| ----------- | ------------- | -------- |
+| sounds      | -             | true     |
+| darkMode    | false         | false    |
+| draggable   | true          | false    |
