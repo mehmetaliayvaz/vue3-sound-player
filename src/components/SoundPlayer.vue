@@ -239,4 +239,6 @@ const volume_change = () => {
 };
 </script>
 
-<style></style>
+<style>
+@import "../css/main.css";
+</style>

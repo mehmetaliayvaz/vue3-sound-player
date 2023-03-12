@@ -31,6 +31,4 @@ const sounds = [
 ];
 </script>
 
-<style>
-@import "./css/main.css";
-</style>
+<style></style>
