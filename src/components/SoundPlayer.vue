@@ -1,33 +1,37 @@
 <template>
-  <div id="player" class="soundPlayer" :class="darkMode ? 'darkMode' : ''">
+  <div id="soundPlayer" class="soundPlayer" :class="darkMode ? 'darkMode' : ''">
     <div v-if="showSoundList" class="soundPlayer-soundList">
-      <button
-        v-for="(soundItem, soundIndex) in sounds"
-        :key="soundIndex"
-        class="soundPlayer-soundList-item"
-        @click="
-          current.id !== soundItem.id
-            ? play(soundItem)
-            : isPlaying
-            ? pause()
-            : play()
-        "
-      >
-        <!-- üst kısım yapılacak -->
-        <pause-circle-icon
-          v-if="current.id === soundItem.id && isPlaying"
-          :size="16"
-          class="soundPlayer-soundList-item-icon"
-        />
-        <play-circle-icon
-          v-else
-          :size="16"
-          class="soundPlayer-soundList-item-icon"
-        />
-        <h3>{{ soundItem.title }}</h3>
-      </button>
+      <div class="soundPlayer-soundList-content box-scroll">
+        <button
+          v-for="soundItem in sounds"
+          :key="soundItem.id"
+          class="soundPlayer-soundList-item"
+          @click="
+            current.id !== soundItem.id
+              ? play(soundItem)
+              : isPlaying
+              ? pause()
+              : play()
+          "
+        >
+          <pause-circle-icon
+            v-if="current.id === soundItem.id && isPlaying"
+            :size="16"
+            class="soundPlayer-soundList-item-icon"
+          />
+          <play-circle-icon
+            v-else
+            :size="16"
+            class="soundPlayer-soundList-item-icon"
+          />
+          <h3>{{ soundItem.title }}</h3>
+        </button>
+      </div>
     </div>
     <div class="soundPlayer-content">
+      <div v-if="draggable" class="soundPlayer-draggable-btn">
+        <move-icon />
+      </div>
       <h2 class="soundPlayer-title">{{ current.title }}</h2>
       <input
         v-model="slider"
@@ -53,6 +57,7 @@
         </button>
         <button
           class="soundPlayer-actions-btn"
+          style="width: 50px"
           @click="changeSpeed(parseFloat(speeds[speedIndex + 1]))"
         >
           {{ speedIndex == -1 ? "0.5" : speeds[speedIndex] }}x
@@ -103,10 +108,11 @@ import ListIcon from "./icons/ListIcon.vue";
 import CloseIcon from "./icons/CloseIcon.vue";
 import PlayCircleIcon from "./icons/PlayCircleIcon.vue";
 import PauseCircleIcon from "./icons/PauseCircleIcon.vue";
-// import { draggable } from "./helpers/draggable";
+import MoveIcon from "./icons/MoveIcon.vue";
+import { makeDraggable } from "../helpers/draggable";
 
 onMounted(() => {
-  // draggable("player");
+  makeDraggable("#soundPlayer");
 });
 
 const props = defineProps({
@@ -118,6 +124,11 @@ const props = defineProps({
     type: Boolean,
     required: false,
     default: false,
+  },
+  draggable: {
+    type: Boolean,
+    required: false,
+    default: true,
   },
 });
 
@@ -137,7 +148,6 @@ const volume = ref(70);
 watch(
   () => props.sounds,
   () => {
-    console.log(props.sounds);
     if (props.sounds.length) {
       current.value = props.sounds[index.value];
       player.src = current.value.file_url;
@@ -168,6 +178,7 @@ const play = (song) => {
   player.play();
   player.muted = false;
   isPlaying.value = true;
+  index.value = props.sounds.findIndex((item) => item.id == current.value.id);
 };
 
 const pause = () => {

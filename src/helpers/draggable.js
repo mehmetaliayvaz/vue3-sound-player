@@ -1,66 +1,37 @@
-export const draggable = (id) => {
-  var object = document.getElementById(id),
-    initX,
-    initY,
-    firstX,
-    firstY;
+export const makeDraggable = (id) => {
+  const elmnt = document.querySelector(id);
+  let currentPosX = 0,
+    currentPosY = 0,
+    previousPosX = 0,
+    previousPosY = 0;
 
-  if (object) {
-    object.addEventListener(
-      "mousedown",
-      function (e) {
-        e.preventDefault();
-        initX = this.offsetLeft;
-        initY = this.offsetTop;
-        firstX = e.pageX;
-        firstY = e.pageY;
-
-        this.addEventListener("mousemove", dragIt, false);
-
-        window.addEventListener(
-          "mouseup",
-          function () {
-            object.removeEventListener("mousemove", dragIt, false);
-          },
-          false
-        );
-      },
-      false
-    );
-
-    object.addEventListener(
-      "touchstart",
-      function (e) {
-        e.preventDefault();
-        initX = this.offsetLeft;
-        initY = this.offsetTop;
-        var touch = e.touches;
-        firstX = touch[0].pageX;
-        firstY = touch[0].pageY;
-
-        this.addEventListener("touchmove", swipeIt, false);
-
-        window.addEventListener(
-          "touchend",
-          function (e) {
-            e.preventDefault();
-            object.removeEventListener("touchmove", swipeIt, false);
-          },
-          false
-        );
-      },
-      false
-    );
+  if (elmnt.querySelector(".soundPlayer-draggable-btn")) {
+    elmnt.querySelector(".soundPlayer-draggable-btn").onmousedown =
+      dragMouseDown;
+  } else {
+    elmnt.onmousedown = dragMouseDown;
   }
 
-  function dragIt(e) {
-    this.style.left = initX + e.pageX - firstX + "px";
-    this.style.top = initY + e.pageY - firstY + "px";
+  function dragMouseDown(e) {
+    e.preventDefault();
+    previousPosX = e.clientX;
+    previousPosY = e.clientY;
+    document.onmouseup = closeDragElement;
+    document.onmousemove = elementDrag;
   }
 
-  function swipeIt(e) {
-    var contact = e.touches;
-    this.style.left = initX + contact[0].pageX - firstX + "px";
-    this.style.top = initY + contact[0].pageY - firstY + "px";
+  function elementDrag(e) {
+    e.preventDefault();
+    currentPosX = previousPosX - e.clientX;
+    currentPosY = previousPosY - e.clientY;
+    previousPosX = e.clientX;
+    previousPosY = e.clientY;
+    elmnt.style.top = elmnt.offsetTop - currentPosY + "px";
+    elmnt.style.left = elmnt.offsetLeft - currentPosX + "px";
+  }
+
+  function closeDragElement() {
+    document.onmouseup = null;
+    document.onmousemove = null;
   }
 };
