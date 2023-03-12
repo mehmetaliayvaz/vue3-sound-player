@@ -10,23 +10,27 @@ const activeSound = ref();
 const sounds = [
   {
     id: 1,
-    title: "Sound 1",
-    file_url: "/sound/sound-1.mp3",
+    title: "Waterfall",
+    file_url:
+      "https://cdn.pixabay.com/audio/2023/02/28/audio_550d815fa5.mp3?filename=waterfall-140894.mp3",
   },
   {
     id: 2,
-    title: "Sound 2",
-    file_url: "/sound/sound-2.mp3",
+    title: "Only Forward",
+    file_url:
+      "https://cdn.pixabay.com/audio/2023/02/28/audio_6cacf0bae3.mp3?filename=only-forward-140896.mp3",
   },
   {
     id: 3,
-    title: "Sound 3",
-    file_url: "/sound/sound-3.mp3",
+    title: "Inspiring Dream",
+    file_url:
+      "https://cdn.pixabay.com/audio/2023/02/28/audio_398ffa294b.mp3?filename=inspiring-dream-140960.mp3",
   },
   {
     id: 4,
-    title: "Sound 4",
-    file_url: "/sound/sound-4.mp3",
+    title: "Voice Over Music",
+    file_url:
+      "https://cdn.pixabay.com/audio/2023/03/04/audio_cebf2ec54a.mp3?filename=voice-over-music-141541.mp3",
   },
 ];
 </script>
