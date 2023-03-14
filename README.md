@@ -4,6 +4,10 @@ You can add an audio - sound player to your website with the Vue3 Sound Player l
 
 All you have to do is pass the sound list to the player with the props.
 
+Demo: [https://vue3-sound-player.vercel.app/](https://vue3-sound-player.vercel.app/)
+
+Github: [https://github.com/mehmetaliayvaz/vue3-sound-player](https://github.com/mehmetaliayvaz/vue3-sound-player)
+
 ## Install
 
 ```html

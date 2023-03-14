@@ -1,6 +1,6 @@
 {
   "name": "vue3-sound-player",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "main": "dist/vue3-sound-player.umd.js",
   "scripts": {
     "serve": "vue-cli-service serve",
