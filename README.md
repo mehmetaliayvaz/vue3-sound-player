@@ -8,6 +8,8 @@ Demo: [https://vue3-sound-player.vercel.app/](https://vue3-sound-player.vercel.a
 
 Github: [https://github.com/mehmetaliayvaz/vue3-sound-player](https://github.com/mehmetaliayvaz/vue3-sound-player)
 
+Npm: [https://www.npmjs.com/package/vue3-sound-player](https://www.npmjs.com/package/vue3-sound-player)
+
 ## Install
 
 ```html
